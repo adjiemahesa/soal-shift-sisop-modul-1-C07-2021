@@ -93,10 +93,10 @@ __Soal 3B__
 
 Soal ini meminta kita untuk menjalankan script **setiap tanggal 1 tujuh hari sekali** dan **tanggal 2 empat hari sekali**. Untuk melakukan itu kita pakai crontab sebagai berikut
 ```
-0 20 1-31/7 * * /home/adjie/soal3a.sh
-0 20 1-31/7 * * /home/adjie/soal3b.sh
-0 20 2-31/4 * * /home/adjie/soal3a.sh
-0 20 2-31/4 * * /home/adjie/soal3b.sh
+0 20 1-31/7 * * bash /home/adjie/soal3a.sh
+0 20 1-31/7 * * bash /home/adjie/soal3b.sh
+0 20 2-31/4 * * bash /home/adjie/soal3a.sh
+0 20 2-31/4 * * bash /home/adjie/soal3b.sh
 ```
 Crontab diarah kan ke file ``soal3a.sh`` agar dapat menarik gambar-gambar yang diperlukan. Lalu, kita buat script untuk menjalankan perintah membuat folder baru menggunakan format nama tanggal unduhnya seperti "DD-MM-YYYY" dengan menggunakan
 ```
@@ -158,19 +158,12 @@ __Soal 3e__
 
 Soal ini kita diminta untuk membuat sebuah script dimana pada hari tertentu dan jam tertentu folder dan gambar-gambar tersebut akan ter-zip dan meng-unzip file-file tersebut pada waktu lainnya. Untuk itu kami buat kan crontab agar bisa menggunakan waktu yang spesifik.
 ```
-* 7-17 * * 1-5 /home/adjie/soal3d.sh
-* 0-6, 18-23 * * 1-5 /home/adjie/soal3e.sh
-* * * * 6-7 /home/adjie/soal3e.sh
+* 7-17 * * 1+5 bash /home/adjie/soal3d.sh
+* 0-6, 18-23 * * 1-5 unzip -P $(date +%d%m%Y) -o ~/Koleksi.zip && rm ~/Koleksi.zip
+* * * * 6-7 unzip -P $(date +%d%m%Y) -o ~/Koleksi.zip && rm ~/Koleksi.zip
 ```
 Pada crontab tersebut bisa dilihat bahwa kita menggunakan jam 7 hingga 17 pada hari senin hingga jumat (Hari Kuliah) untuk meng-zip kan file dan sisanya untuk meng-unzip kan file. Untuk meng-zipkan file crontab diarahkan ke ``soal3d.sh`` karena sudah mengandung perintah untuk meng-zip kan file. Untuk meng-unzip kan file bisa digunakan sebagai berikut
 ```
-unzip -P $password Koleksi.zip
+unzip -P $(date +%d%m%Y) -o ~/Koleksi.zip && rm ~/Koleksi.zip
 ```
-Kita *unzip* kan file dengan ``-P`` untuk memasukkan password karena file ``zip`` menggunakan password dan password tersebut menggunakan format nama yang sama dengan ``soal3d.sh`` yaitu
-```
-password=$(date +"%d%m%Y")
-```
-Lalu, sama seperti **Soal 3d** kita menggunakan *command* ``rm`` agar tidak hanya meng-*unzip* kan file tetapi juga menghapus file ``zip`` yang lama
-```
-rm -r Koleksi.zip
-```
+Dimana *command* ``-P`` digunakan untuk memasukan password agar bisa membuka file zip dan ``-o`` serta ``rm`` untuk mengeluarkan serta menghapus file ``.zip``
