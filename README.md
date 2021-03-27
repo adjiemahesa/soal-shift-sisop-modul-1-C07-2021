@@ -1,13 +1,24 @@
 # soal-shift-sisop-modul-1-C07-2021
 
-// Soal 1
+## Soal 1
 
-1a : menampilkan informasi Log,Pesan Log, dan Username
-    cat syslog.log mengambil data syslog.log , kemudian cut baris yang di pisahkan ' ' kemudian di ambil  dari field ke-6 untuk menampilkan informasi log,pesan log, dan Username
+1a :  ``` cat syslog.log | cut -f6- -d' ' ```
+
+//  menampilkan informasi Log,Pesan Log, dan Username
+    cat syslog.log mengambil data syslog.log , kemudian cut baris yang di pisahkan ' ' kemudian di ambil dari field ke-6 untuk menampilkan informasi log,pesan log, dan Username
     tampilkan
  
-1b : menampilkan jumah kemuculan soal setiap pesan "ERROR" 
-      cat syslog.log mengambil data log , grep "ERROR" mengambil kata error ,
+1b : ``` cat syslog.log | grep "ERROR" | cut -d' ' -f7- | cut -d'(' -f1 | sort | uniq -c ```
+
+//  menampilkan jumah kemuculan soal setiap pesan "ERROR" 
+    cat syslog.log mengambil data syslog.log , grep "ERROR" mengambil line yang mengandung kata "ERROR" , kemudian cut baris yang di pisahkan ' ', setelah itu di cut lagi degan '(' kemudian di ambil field awal (f1) . Terakhir di sorting atau di grouping dengan perintah uniq .
+    
+1c : ``` cat syslog.log | grep "ERROR" | cut -d'(' -f2 | cut -d')' -f1 | sort | uniq -c ```
+     ``` cat syslog.log | grep "INFO" | cut -d'(' -f2 | cut -d')' -f1 | sort | uniq -c ```
+  
+// menampilkan jumlah kemunculan log "ERROR" maupun "INFO"
+  cat syslog.log mengambil data syslog.log , grep "ERROR" mengambil line yang mengandung kata "ERROR" atau "INFO", kemudian cut baris dengan '(' , setelah itu hasil cut tersebut di cut lagi dengan ')' sehingga nanti akan memunculkan user. Terakhir di sorting dan di grouping dengan perintah uniq.
+  
 
 
 ## Soal 3
@@ -34,35 +45,3 @@ $(mv Koleksi_* Foto.log /home/adjie/$(date +"%d-%m-%Y"))
 ```
 
 __Soal 3C__
-
-Soal ini, selain mengunduh foto kucing, kita diminta untuk mengunduh foto kelinci juga melalui link ``https://loremflickr.com/320/240/bunny``. Lalu, dibuat sehingga mengunduh gambarnya bergantian maka kita bisa menggunakan modulo hari agar bisa membedakan hari yang genap dan yang ganjil seperti berikut
-```
-x=$(date "+%--j")
-mod=$((x % 2))
-```
-Setelah membuat nilai ``mod`` kita masukan kedalam looping dimana jika nilai mod = 0 maka hari tersebut akan mengunduh gambar kucing dan jika mod != 0 maka akan mengunduh foto kelinci
-```
-if [[ $mod -eq  0 ]]
-then
-
-for ((num=1;num<=23;num=num+1))
-do
-	i=$(printf "%02d" $num)
-	$(mkdir "Kucing_"$(date +"%d-%m-%Y"))
-	wget -O /home/adjie/Kucing_$(date +"%d-%m-%Y")/Koleksi_$i 'https://loremflickr.com/320/240/kitten'
-done
-
-elif [[ $mod -eq 1 ]]
-then
-
-for ((num=1;num<=23;num=num+1))
-do
-	i=$(printf "%02d" $num)
-	$(mkdir Kelinci_$(date +"%d-%m-%Y"))
-	wget -O /home/adjie/Kelinci_$(date +"%d-%m-%Y")/Koleksi_$i 'https://loremflickr.com/320/240/bunny'
-done
-fi
-```
-Didalam looping if akan ada looping for dimana akan mengunduh gambar dan akan ada membuat folder baru dengan format nama "Kucing/Kelinci_DD-MM-YYYY" `` $(mkdir "Kucing_"$(date +"%d-%m-%Y"))``
-
-__Soal 3D__
