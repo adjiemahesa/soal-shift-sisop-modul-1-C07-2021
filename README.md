@@ -51,4 +51,35 @@ Soal ini, selain kita diminta mengunduh gambar kucing, kita juga diminta mengund
 x=$(date "+%--j")
 mod=$((x % 2))
 ```
-Dimana kita menggunakan tanggal unduh tersebut dan di modulo 2 agar menghasilkan nilai 0 dan bukan 0. Variable ``mod`` akan digunakan dalam looping ``if`` dimana jika hasil dari ``mod = 0`` maka akan mengunduh gambar kucing. Sedangkan jika ``mod != 0`` gambar yang diunduh akan menjadi gambar kelinci
+Dimana kita menggunakan tanggal unduh tersebut dan di modulo 2 agar menghasilkan nilai 0 dan bukan 0. Variable ``mod`` akan digunakan dalam looping ``if`` dimana jika hasil dari ``mod = 0`` maka hari akan sama dengan hari genap dan akan mengunduh gambar kucing. Sedangkan jika ``mod != 0`` maka hari akan sama dengan hari ganjil dan gambar yang diunduh akan menjadi gambar kelinci.
+```
+if [[ $mod -eq  0 ]]
+then
+
+for ((num=1;num<=23;num=num+1))
+do
+	i=$(printf "%02d" $num)
+	$(mkdir "Kucing_"$(date +"%d-%m-%Y"))
+	wget -O /home/adjie/Kucing_$(date +"%d-%m-%Y")/Koleksi_$i 'https://loremflickr.com/320/240/kitten'
+done
+
+elif [[ $mod -eq 1 ]]
+then
+
+for ((num=1;num<=23;num=num+1))
+do
+	i=$(printf "%02d" $num)
+	$(mkdir Kelinci_$(date +"%d-%m-%Y"))
+	wget -O /home/adjie/Kelinci_$(date +"%d-%m-%Y")/Koleksi_$i 'https://loremflickr.com/320/240/bunny'
+done
+fi
+```
+Didalam loopingan ini terdapat juga untuk tiap kondisi loopingan ``for`` untuk mengambil gambar menggunakan ``wget`` serta membuat folder sesuai format nama "Kucing/Kelinci_DDMMYYY". Untuk membuat folder tersebut kita gunakan ``mkdir`` seperti berikut
+```
+$(mkdir "Kucing_"$(date +"%d-%m-%Y"))
+$(mkdir Kelinci_$(date +"%d-%m-%Y"))
+```
+
+__Soal 3d__
+
+
