@@ -93,4 +93,21 @@ password=$(date +"%d%m%Y")
 
 __Soal 3e__
 
-
+Soal ini kita diminta untuk membuat sebuah script dimana pada hari tertentu dan jam tertentu folder dan gambar-gambar tersebut akan ter-zip dan meng-unzip file-file tersebut pada waktu lainnya. Untuk itu kami buat kan crontab agar bisa menggunakan waktu yang spesifik.
+```
+* 7-17 * * 1+5 /home/adjie/soal3d.sh
+* 0-6, 18-23 * * 1-5 /home/adjie/soal3e.sh
+* * * * 6-7 /home/adjie/soal3e.sh
+```
+Pada crontab tersebut bisa dilihat bahwa kita menggunakan jam 7 hingga 17 pada hari senin hingga jumat (Hari Kuliah) untuk meng-zip kan file dan sisanya untuk meng-unzip kan file. Untuk meng-zipkan file crontab diarahkan ke ``soal3d.sh`` karena sudah mengandung perintah untuk meng-zip kan file. Untuk meng-unzip kan file bisa digunakan sebagai berikut
+```
+unzip -P $password Koleksi.zip
+```
+Kita *unzip* kan file dengan ``-P`` untuk memasukkan password karena file ``zip`` menggunakan password dan password tersebut menggunakan format nama yang sama dengan ``soal3d.sh`` yaitu
+```
+password=$(date +"%d%m%Y")
+```
+Lalu, sama seperti **Soal 3d** kita menggunakan *command* ``rm`` agar tidak hanya meng-*unzip* kan file tetapi juga menghapus file ``zip`` yang lama
+```
+rm -r Koleksi.zip
+```
