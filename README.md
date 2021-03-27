@@ -34,3 +34,35 @@ $(mv Koleksi_* Foto.log /home/adjie/$(date +"%d-%m-%Y"))
 ```
 
 __Soal 3C__
+
+Soal ini, selain mengunduh foto kucing, kita diminta untuk mengunduh foto kelinci juga melalui link ``https://loremflickr.com/320/240/bunny``. Lalu, dibuat sehingga mengunduh gambarnya bergantian maka kita bisa menggunakan modulo hari agar bisa membedakan hari yang genap dan yang ganjil seperti berikut
+```
+x=$(date "+%--j")
+mod=$((x % 2))
+```
+Setelah membuat nilai ``mod`` kita masukan kedalam looping dimana jika nilai mod = 0 maka hari tersebut akan mengunduh gambar kucing dan jika mod != 0 maka akan mengunduh foto kelinci
+```
+if [[ $mod -eq  0 ]]
+then
+
+for ((num=1;num<=23;num=num+1))
+do
+	i=$(printf "%02d" $num)
+	$(mkdir "Kucing_"$(date +"%d-%m-%Y"))
+	wget -O /home/adjie/Kucing_$(date +"%d-%m-%Y")/Koleksi_$i 'https://loremflickr.com/320/240/kitten'
+done
+
+elif [[ $mod -eq 1 ]]
+then
+
+for ((num=1;num<=23;num=num+1))
+do
+	i=$(printf "%02d" $num)
+	$(mkdir Kelinci_$(date +"%d-%m-%Y"))
+	wget -O /home/adjie/Kelinci_$(date +"%d-%m-%Y")/Koleksi_$i 'https://loremflickr.com/320/240/bunny'
+done
+fi
+```
+Didalam looping if akan ada looping for dimana akan mengunduh gambar dan akan ada membuat folder baru dengan format nama "Kucing/Kelinci_DD-MM-YYYY" `` $(mkdir "Kucing_"$(date +"%d-%m-%Y"))``
+
+__Soal 3D__
