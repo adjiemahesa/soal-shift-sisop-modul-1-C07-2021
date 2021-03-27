@@ -76,10 +76,21 @@ fi
 ```
 Didalam loopingan ini terdapat juga untuk tiap kondisi loopingan ``for`` untuk mengambil gambar menggunakan ``wget`` serta membuat folder sesuai format nama "Kucing/Kelinci_DDMMYYY". Untuk membuat folder tersebut kita gunakan ``mkdir`` seperti berikut
 ```
-$(mkdir "Kucing_"$(date +"%d-%m-%Y"))
+$(mkdir Kucing_$(date +"%d-%m-%Y"))
 $(mkdir Kelinci_$(date +"%d-%m-%Y"))
 ```
 
 __Soal 3d__
+
+Disoal ini kita membuat script untuk memindahkan seluruh folder Kucing dan Kelinci beserta gambar-gambarnya kedalam suatu file ``zip`` dengan fomrat nama "Koleksi.zip". Untuk itu kita bisa melakukan seperti berikut
+```
+zip -rm -P $password Koleksi.zip Kucing_* Kelinci_*
+```
+Pada perintah tersebut ``-rm`` digunakan agar memindahkan file-file tersebut dan bukan hanya di *copy* saja. Ada juga ``-P`` untuk membuat password yang berupa tanggal saat ini dengan format "DDMMYYY". Agar terlakukan hal tersebut dibentuk variable ``password`` yang menyimpan nilai dari tanggal saat ini seperti berikut
+```
+password=$(date +"%d%m%Y")
+```
+
+__Soal 3e__
 
 
