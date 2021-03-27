@@ -86,8 +86,33 @@ setelah melakukan perhitungan bagian ini akan melakukan perbandingan profit, jik
 
 __Soal 3A__
 
-Untuk mendownload file atau foto-foto dari link ``https://loremflickr.com/320/240/kitten``
+*Untuk soal ini saya saat di execute hasilnya masih salah*
 
+Untuk mendownload file atau foto-foto dari link ``https://loremflickr.com/320/240/kitten`` kita menggunakan *command* ``wget`` seperti berikut
+```
+wget -o Foto.log https://loremflickr.com/320/240/kitten -O "Koleksi_$x"
+```
+dengan ``-o`` untuk mengoverwrite Foto.log yang kita gunakan nanti *compare* dengan gambar-gambar berikutnya. ``-O`` kita *command* dengan "Koleksi_$x" dimana setiap gambar yang diunduh akan berubah namanya sesuai urutan download yang kita urutkan dengan ``x=$(printf "%02d" $iter)`` yang akan mencari angka urutan terhadap 2-digit. Lalu, kita menggunakan satu bagian *string* didalam ``Foto.log`` yang berisi nama file gambar untuk kita *compare* gambar yang sudah diunduh dengan yang baru diunduh. Hal itu kita buat dengan ``awk`` seperti ini
+```
+temp=$(awk 'NR==6{print $3}' Foto.log)
+```
+Lalu, kita *compare* dengan looping dimana kita menggunakan ``wget`` lagi untuk mengunduh gambar serta membuat ``awk`` lagi sehingga dapat line untuk di *compare*.
+```
+a=num
+for ((a=iter-1;a>=1;a=a-1))
+do
+        wget -o Foto.log https://loremflickr.com/320/240/kitten -O "Koleksi_$x"
+        temp2=$(awk 'NR==6{print $3}' Foto.log)
+
+        if [[ "$temp" == "$temp2" ]]
+        then
+                rm -f "Koleksi_$x"
+                count=$((count-1))
+                iter=$((iter-1))
+        fi
+done
+```
+Terakhir, didalam loopingan mengunduh foto akan ada loopingan dimana meng-*check* apakah line pada variable ``temp`` dengan ``temp2`` sama atau tidak. Jika sama maka akan menghapus file duplikat yang baru saja diunduh dengan *command* ``rm``.
 
 __Soal 3B__
 
