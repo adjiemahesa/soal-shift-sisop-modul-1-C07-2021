@@ -13,3 +13,4 @@
 ## Soal 3
 
 __Soal 3A__
+Untuk mendownload file atau foto-foto dari link ``https://loremflickr.com/320/240/kitten``
