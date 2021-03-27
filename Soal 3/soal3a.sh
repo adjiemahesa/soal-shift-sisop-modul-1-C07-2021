@@ -22,10 +22,9 @@ array[$num]="$(md5sum Koleksi_$x | awk 'NR==6{print $3}' Foto.log)"
 iter=num
 for ((iter=num-1;iter>=1;iter=iter-1))
 do
-##	wget -o Foto.log https://loremflickr.com/320/240/kitten -O "Koleksi_$x"
 ##	temp2=$(awk 'NR==6{print $3}' Foto.log)
 	
-	if [[ "${check[$num]}" == "${check[$iter]}" ]]
+	if [[ "${array[$num]}" == "${array[$iter]}" ]]
 	then
 		rm -f "Koleksi_$x"
 		limit=$((limit-1))
