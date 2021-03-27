@@ -14,3 +14,11 @@
 
 __Soal 3A__
 Untuk mendownload file atau foto-foto dari link ``https://loremflickr.com/320/240/kitten``
+
+
+__Soal 3B__
+Soal ini meminta kita untuk menjalankan script **setiap tanggal 1 tujuh hari sekali** dan **tanggal 2 empat hari sekali**. Untuk melakukan itu kita pakai crontab sebagai berikut
+```
+0 20 1-31/7 * * /home/adjie/soal3a.sh
+0 20 2-31/4 * * /home/adjie/soal3a.sh
+```
