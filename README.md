@@ -95,7 +95,7 @@ __Soal 3e__
 
 Soal ini kita diminta untuk membuat sebuah script dimana pada hari tertentu dan jam tertentu folder dan gambar-gambar tersebut akan ter-zip dan meng-unzip file-file tersebut pada waktu lainnya. Untuk itu kami buat kan crontab agar bisa menggunakan waktu yang spesifik.
 ```
-* 7-17 * * 1+5 /home/adjie/soal3d.sh
+* 7-17 * * 1-5 /home/adjie/soal3d.sh
 * 0-6, 18-23 * * 1-5 /home/adjie/soal3e.sh
 * * * * 6-7 /home/adjie/soal3e.sh
 ```
