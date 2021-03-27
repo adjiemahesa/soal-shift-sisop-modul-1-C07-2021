@@ -24,3 +24,13 @@ Soal ini meminta kita untuk menjalankan script **setiap tanggal 1 tujuh hari sek
 0 20 1-31/7 * * /home/adjie/soal3a.sh
 0 20 2-31/4 * * /home/adjie/soal3a.sh
 ```
+Lalu, kita buat script untuk menjalankan perintah membuat folder baru menggunakan format nama tanggal unduhnya seperti "DD-MM-YYYY" dengan menggunakan
+```
+$(mkdir $(date +"%d-%m-%Y"))
+```
+sedangkan untuk memindahkan file gambar yang telah diunduh serta dengan log-nya kita menggunakan
+```
+$(mv Koleksi_* Foto.log /home/adjie/$(date +"%d-%m-%Y")) 
+```
+
+__Soal 3C__
