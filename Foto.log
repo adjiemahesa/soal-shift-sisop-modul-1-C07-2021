@@ -1,0 +1,15 @@
+--2021-03-27 16:18:41--  https://loremflickr.com/320/240/kitten
+Resolving loremflickr.com (loremflickr.com)... 104.21.47.37, 172.67.170.91, 2606:4700:3034::6815:2f25, ...
+Connecting to loremflickr.com (loremflickr.com)|104.21.47.37|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: /cache/resized/65535_50450654442_e3a7fc0a5c_320_240_nofilter.jpg [following]
+--2021-03-27 16:18:42--  https://loremflickr.com/cache/resized/65535_50450654442_e3a7fc0a5c_320_240_nofilter.jpg
+Reusing existing connection to loremflickr.com:443.
+HTTP request sent, awaiting response... 200 OK
+Length: 16327 (16K) [image/jpeg]
+Saving to: ‘Koleksi_23’
+
+     0K .......... .....                                      100% 4,23M=0,004s
+
+2021-03-27 16:18:42 (4,23 MB/s) - ‘Koleksi_23’ saved [16327/16327]
+
