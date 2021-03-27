@@ -45,3 +45,10 @@ $(mv Koleksi_* Foto.log /home/adjie/$(date +"%d-%m-%Y"))
 ```
 
 __Soal 3C__
+
+Soal ini, selain kita diminta mengunduh gambar kucing, kita juga diminta mengunduh gambar kelinci melalui link ``https://loremflickr.com/320/240/bunny``. Lalu, kita juga diminta agar gambar-gambar tersebut diunduh secara bergantian. Untuk itu kita menggunakan
+```
+x=$(date "+%--j")
+mod=$((x % 2))
+```
+Dimana kita menggunakan tanggal unduh tersebut dan di modulo 2 agar menghasilkan nilai 0 dan bukan 0. Variable ``mod`` akan digunakan dalam looping ``if`` dimana jika hasil dari ``mod = 0`` maka akan mengunduh gambar kucing. Sedangkan jika ``mod != 0`` gambar yang diunduh akan menjadi gambar kelinci
