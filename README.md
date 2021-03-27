@@ -1,12 +1,5 @@
 # soal-shift-sisop-modul-1-C07-2021
 
-// Soal 3
-
-3a: 
-
-
-
-
 // Soal 1
 
 1a : menampilkan informasi Log,Pesan Log, dan Username
@@ -15,3 +8,8 @@
  
 1b : menampilkan jumah kemuculan soal setiap pesan "ERROR" 
       cat syslog.log mengambil data log , grep "ERROR" mengambil kata error ,
+
+
+## Soal 3
+
+__Soal 3A__
