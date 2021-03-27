@@ -2,7 +2,7 @@
 
 ## Soal 1
 
-1a : <br> ``` cat syslog.log | cut -f6- -d' ' ```
+__Soal 1a__ : <br> ``` cat syslog.log | cut -f6- -d' ' ```
 
 //  menampilkan informasi Log,Pesan Log, dan Username
     cat syslog.log mengambil data syslog.log , kemudian cut baris yang di pisahkan ' ' kemudian di ambil dari field ke-6 untuk menampilkan informasi log,pesan log, dan Username
