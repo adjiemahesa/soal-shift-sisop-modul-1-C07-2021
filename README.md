@@ -18,8 +18,69 @@ __Soal 1c__ :<br> ``` cat syslog.log | grep "ERROR" | cut -d'(' -f2 | cut -d')' 
   
 // menampilkan jumlah kemunculan log "ERROR" maupun "INFO"
   cat syslog.log mengambil data syslog.log , grep "ERROR" mengambil line yang mengandung kata "ERROR" atau "INFO", kemudian cut baris dengan '(' , setelah itu hasil cut tersebut di cut lagi dengan ')' sehingga nanti akan memunculkan user. Terakhir di sorting dan di grouping dengan perintah uniq.
-  
 
+
+## Soal 2
+
+__Soal 2A__
+pada soal ini kita diminta untuk menampilkan row id yang memiliki profit percentage yang terbesar
+```
+costPrice=$18-$21;
+ profitPercentage=($21/costPrice)*100;
+ 
+ if(profitPercentage > maxprofit) {
+ maxprofit=profitPercentage;
+ }
+ 
+ if(profitPercentage == maxprofit) {
+  rowidmax = $1;
+ }
+ ```
+bagian diatas akan melakukan perhitunagn untuk mendapatkan costprice dan profitpercentage untuk setiap barisnya, jika ditemukan profit percentage yang lebih besar atau sama dengan nilai profit terbesar yang telah tersimpan, maka nilai profit dan data pada order id akan disimpan di variabel maxprofit dan variabel rowidmax
+ 
+__Soal 2B__
+
+pada soal ini kita diminta untuk mencari nama customer yang berada pada Alberqueque saat 2017
+```
+printf("Daftar nama customer di Albuquerque pada tahun 2017 antara lain:\n")}
+{if ($3 ~/17/ && $10 == "Albuquerque")
+ {print $7}}
+```
+bagian diatas akan melakukan pencarian pada field 3 yang memiliki "/17/" dan pada field 10 yang terdapat "Alberqueque"
+
+__Soal 2C__
+
+soal ini meminta kita untuk menampilkan segmen customer dengan penjualan yang paling sedikit
+```
+if($8 == "Home Office") hitho++;
+if($8 == "Consumer") hitcon++;
+if($8 == "Corporate") hitcor++;
+```
+bagian ini akan melakukan perhitungan jumlah penjualan pada setiap segmennya
+```
+if (hitho<hitcon && hitho<hitcor){ profitmin=hitho;bidang="Home Office";}
+if (hitcon<hitho && hitcon<hitcor){ profitmin=hitho;bidang="Consumer";}
+if (hitcor<hitcon && hitcor<hitho) { profitmin=hitho;bidang="Corporate";}
+```
+setelah melakukan perhitungan bagian ini akan melakukan perbandingan nilai, jika telah didapatkan nilai terkecil maka akan diisikan kedalam variabel profitmin dan pada bidang akan diisikan nama segmen dengan nilai terkecil
+
+__Soal 2D__
+
+soal ini meminta kita untuk menampilkan region dengan profit yang paling sedikit, soal ini hampir mirip dengan bagian sebelumnnya maka penyelesaiannya juga hampir serupa
+```
+if($13 == "Central") hitC+=$21;
+if($13 == "West") hitW+=$21;
+if($13 == "East") hitE+=$21;
+if($13 == "South") hitS+=$21;
+```
+bagian ini akan melakukan penjumlahan profit yang diperoleh pada setiap regionnya
+```
+if (hitC<hitW && hitC<hitE &&  hitC<hitS){ regionmin=hitC;region="Central";}
+if (hitW<hitC && hitW<hitE &&  hitW<hitS){ regionmin=hitW;region="West";}
+if (hitE<hitW && hiEC<hiCE &&  hitE<hitS){ regionmin=hitE;region="East";}
+if (hitS<hitW && hitS<hitE &&  hitS<hitc){ regionmin=hitS;region="South";}
+```
+setelah melakukan perhitungan bagian ini akan melakukan perbandingan profit, jika telah didapatkan nilai terkecil maka akan diisikan kedalam variabel regionmin dan pada region akan diisikan nama region dengan perolehan profit terkecil
 
 ## Soal 3
 
