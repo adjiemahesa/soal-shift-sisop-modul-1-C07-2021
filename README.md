@@ -4,20 +4,20 @@
 
 __Soal 1a__ : <br> ``` cat syslog.log | cut -f6- -d' ' ```
 
-//  menampilkan informasi Log,Pesan Log, dan Username
+//  menampilkan informasi Log,Pesan Log, dan Username<br>
     cat syslog.log mengambil data syslog.log , kemudian cut baris yang di pisahkan ' ' kemudian di ambil dari field ke-6 untuk menampilkan informasi log,pesan log, dan Username
     tampilkan
  
 __Soal 1b__ : <br> ``` cat syslog.log | grep "ERROR" | cut -d' ' -f7- | cut -d'(' -f1 | sort | uniq -c ```
 
-//  menampilkan jumah kemuculan soal setiap pesan "ERROR" 
+//  menampilkan jumah kemuculan soal setiap pesan "ERROR" <br>
     cat syslog.log mengambil data syslog.log , grep "ERROR" mengambil line yang mengandung kata "ERROR" , kemudian cut baris yang di pisahkan ' ', setelah itu di cut lagi degan '(' kemudian di ambil field awal (f1) . Terakhir di sorting atau di grouping dengan perintah uniq .
     
 __Soal 1c__ :<br> ``` cat syslog.log | grep "ERROR" | cut -d'(' -f2 | cut -d')' -f1 | sort | uniq -c ``` <br>
      ``` cat syslog.log | grep "INFO" | cut -d'(' -f2 | cut -d')' -f1 | sort | uniq -c ```
   
-// menampilkan jumlah kemunculan log "ERROR" maupun "INFO"
-  cat syslog.log mengambil data syslog.log , grep "ERROR" mengambil line yang mengandung kata "ERROR" atau "INFO", kemudian cut baris dengan '(' , setelah itu hasil cut tersebut di cut lagi dengan ')' sehingga nanti akan memunculkan user. Terakhir di sorting dan di grouping dengan perintah uniq.
+// menampilkan jumlah kemunculan log "ERROR" maupun "INFO" <br>
+   cat syslog.log mengambil data syslog.log , grep "ERROR" mengambil line yang mengandung kata "ERROR" atau "INFO", kemudian cut baris dengan '(' , setelah itu hasil cut tersebut di cut lagi dengan ')' sehingga nanti akan memunculkan user. Terakhir di sorting dan di grouping dengan perintah uniq.
 
 
 ## Soal 2
