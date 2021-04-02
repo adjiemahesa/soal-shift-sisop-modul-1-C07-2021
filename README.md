@@ -91,6 +91,7 @@ contoh dalam soal 2A :
 END {printf("\nTipe segmen customer yang penjualannya paling sedikit adalah %s dengan %d transaksi.\n\n", bidang, profitmin)}' Laporan-TokoShiSop.tsv >> hasil.txt
 ```
 Dengan menggunakan ``` >> hasil.txt ``` program akan mencetak output di hasil.txt
+
 output untuk seluruh soal 2 adalah sebagai berikut :
 ```
 Transaksi terakhir dengan profit percentage terbesar yaitu 9952 dengan persentase 100.000 %.
