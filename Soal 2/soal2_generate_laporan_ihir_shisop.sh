@@ -11,16 +11,15 @@ BEGIN { FS=OFS="\t"; maxprofit=0; rowidmax=1}
  if(profitPercentage == maxprofit) {
   rowidmax = $1;
  }
- 
- 
-}
-END {printf ("Transaksi terakhir dengan profit percentage terbesar yaitu %d dengan persentase %.3f %%.\n\n", rowidmax, maxprofit)}' Laporan-TokoShiSop.tsv > hasil.txt
+ }
+END {printf ("Transaksi terakhir dengan profit percentage terbesar yaitu %d dengan persentase %.3f %%.\n\n", rowidmax, maxprofit)}' Laporan-TokoShiSop.tsv >> hasil.txt
 
 awk '
 BEGIN{FS=OFS="\t"; printf("Daftar nama customer di Albuquerque pada tahun 2017 antara lain:\n")}
 {if ($3 ~/17/ && $10 == "Albuquerque")
- {print $7}}' Laporan-TokoShiSop.tsv >>hasil.txt
+ {print $7|"uniq"}}' Laporan-TokoShiSop.tsv >>hasil.txt
 
+#REVISI SOAL 2B menambah operator uniq agar tidak melakukan perulangan nama pada output
 
 awk 'BEGIN {FS=OFS="\t"; hitho=0; hitcon=0; hitcor=0; profitmin=0}
 {
@@ -48,6 +47,6 @@ if (hitE<hitW && hiEC<hiCE &&  hitE<hitS){ regionmin=hitE;region="East";}
 if (hitS<hitW && hitS<hitE &&  hitS<hitc){ regionmin=hitS;region="South";}
 
 }
-END {printf("Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah %s dengan total keuntungan %d\n\n",region,regionmin)}' Laporan-TokoShiSop.tsv >> hasil.txt
-
+END {printf("Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah %s dengan total keuntungan %.4f\n\n",region,regionmin)}' Laporan-TokoShiSop.tsv >> hasil.txt
+#REVISI SOAL 2D mengganti %d menjadi %.4f
 
