@@ -23,6 +23,7 @@ __Soal 1c__ :<br> ``` cat syslog.log | grep "ERROR" | cut -d'(' -f2 | cut -d')' 
 ## Soal 2
 
 __Soal 2A__
+
 pada soal ini kita diminta untuk menampilkan row id yang memiliki profit percentage yang terbesar
 ```
 costPrice=$18-$21;
@@ -84,6 +85,26 @@ setelah melakukan perhitungan bagian ini akan melakukan perbandingan profit, jik
 
 __Soal 2E___
 
+pada soal ini kita diminta untuk melakukan print output dari sript soal sebelumnya ke dalam file hasil.txt dan menambahkan beberapa kalimat agar mudah dibaca
+contoh dalam soal 2A :
+```
+END {printf("\nTipe segmen customer yang penjualannya paling sedikit adalah %s dengan %d transaksi.\n\n", bidang, profitmin)}' Laporan-TokoShiSop.tsv >> hasil.txt
+```
+Dengan menggunakan ``` >> hasil.txt ``` program akan mencetak output di hasil.txt
+output untuk seluruh soal 2 adalah sebagai berikut :
+```
+Transaksi terakhir dengan profit percentage terbesar yaitu 9952 dengan persentase 100.000 %.
+
+Daftar nama customer di Albuquerque pada tahun 2017 antara lain:
+Michelle Lonsdale
+Benjamin Farhat
+David Wiener
+Susan Vittorini
+
+Tipe segmen customer yang penjualannya paling sedikit adalah Home Office dengan 1783 transaksi.
+
+Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah Central dengan total keuntungan 39706.3625
+```
 
 ## Soal 3
 
