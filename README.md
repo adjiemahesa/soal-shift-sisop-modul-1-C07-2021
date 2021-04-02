@@ -44,9 +44,9 @@ pada soal ini kita diminta untuk mencari nama customer yang berada pada Alberque
 ```
 printf("Daftar nama customer di Albuquerque pada tahun 2017 antara lain:\n")}
 {if ($3 ~/17/ && $10 == "Albuquerque")
- {print $7}}
+ {print $7|"uniq"}}
 ```
-bagian diatas akan melakukan pencarian pada field 3 yang memiliki "/17/" dan pada field 10 yang terdapat "Alberqueque"
+bagian diatas akan melakukan pencarian pada field 3 yang memiliki "/17/" dan pada field 10 yang terdapat "Alberqueque", menggunakan operator ```uniq``` untuk mencegah pengulangan saat melakukan print
 
 __Soal 2C__
 
@@ -81,6 +81,9 @@ if (hitE<hitW && hiEC<hiCE &&  hitE<hitS){ regionmin=hitE;region="East";}
 if (hitS<hitW && hitS<hitE &&  hitS<hitc){ regionmin=hitS;region="South";}
 ```
 setelah melakukan perhitungan bagian ini akan melakukan perbandingan profit, jika telah didapatkan nilai terkecil maka akan diisikan kedalam variabel regionmin dan pada region akan diisikan nama region dengan perolehan profit terkecil
+
+__Soal 2E___
+
 
 ## Soal 3
 
