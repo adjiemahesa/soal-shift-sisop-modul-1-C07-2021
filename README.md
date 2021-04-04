@@ -323,10 +323,10 @@ do
 done
 fi
 ```
-Didalam loopingan ini terdapat juga untuk tiap kondisi loopingan ``for`` untuk mengambil gambar menggunakan ``wget`` serta membuat folder sesuai format nama "Kucing/Kelinci_DDMMYYY". Untuk membuat folder tersebut kita gunakan ``mkdir`` seperti berikut
+Didalam loopingan ini terdapat juga untuk tiap kondisi loopingan ``for`` untuk mengambil gambar menggunakan ``wget`` serta membuat folder sesuai format nama "Kucing/Kelinci_DDMMYYY". Untuk membuat folder tersebut kita gunakan ``mkdir`` dan fungi day dimana fungsi tersebut digunakan untuk menulis hari sekarang yang sesuai format seperti berikut ``day=$(date '+%d-%m-%Y')`` sehingga untuk penggunaan ``mkdir`` adalah 
 ```
-$(mkdir Kucing_$(date +"%d-%m-%Y"))
-$(mkdir Kelinci_$(date +"%d-%m-%Y"))
+mkdir -p "Kucing_$day"
+mkdir -p "Kucing_$day"
 ```
 Untuk Soal ini kendala yang dialami adalah pada pencobaan crontab nya karena jika saat ini nilai ``mod`` adalah 0 maka saya ingin mencoba untuk membuktikan jika nilai ``mod`` nya benar tetapi tidak bisa karena harus saya gunakan penggantian date and time pada virtualbox nya tetapi saat saya rubah hanya bisa beberapa waktu saja sebelum virtualbox merubah secara automatis kembali ke waktu saat ini.
 
