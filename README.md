@@ -235,6 +235,9 @@ Tipe segmen customer yang penjualannya paling sedikit adalah Home Office dengan 
 Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah Central dengan total keuntungan 39706.3625
 ```
 
+![revisi2eoutput](https://user-images.githubusercontent.com/81466736/113507440-a44a2680-9574-11eb-8806-3562c2eaeccf.JPG)
+
+
 ## Soal 3
 
 __Soal 3A__
