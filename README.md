@@ -2,22 +2,133 @@
 
 ## Soal 1
 
-__Soal 1a__ : <br> ``` cat syslog.log | cut -f6- -d' ' ```
+__Soal 1A__ : <br> ``` cat syslog.log | cut -f6- -d' ' ```
 
 //  menampilkan informasi Log,Pesan Log, dan Username<br>
     cat syslog.log mengambil data syslog.log , kemudian cut baris yang di pisahkan ' ' kemudian di ambil dari field ke-6 untuk menampilkan informasi log,pesan log, dan Username
     tampilkan
  
-__Soal 1b__ : <br> ``` cat syslog.log | grep "ERROR" | cut -d' ' -f7- | cut -d'(' -f1 | sort | uniq -c ```
+__Soal 1B__ : <br> ``` cat syslog.log | grep "ERROR" | cut -d' ' -f7- | cut -d'(' -f1 | sort | uniq -c ```
 
 //  menampilkan jumah kemuculan soal setiap pesan "ERROR" <br>
     cat syslog.log mengambil data syslog.log , grep "ERROR" mengambil line yang mengandung kata "ERROR" , kemudian cut baris yang di pisahkan ' ', setelah itu di cut lagi degan '(' kemudian di ambil field awal (f1) . Terakhir di sorting atau di grouping dengan perintah uniq .
     
-__Soal 1c__ :<br> ``` cat syslog.log | grep "ERROR" | cut -d'(' -f2 | cut -d')' -f1 | sort | uniq -c ``` <br>
+__Soal 1C__ :<br> ``` cat syslog.log | grep "ERROR" | cut -d'(' -f2 | cut -d')' -f1 | sort | uniq -c ``` <br>
      ``` cat syslog.log | grep "INFO" | cut -d'(' -f2 | cut -d')' -f1 | sort | uniq -c ```
   
 // menampilkan jumlah kemunculan log "ERROR" maupun "INFO" <br>
    cat syslog.log mengambil data syslog.log , grep "ERROR" mengambil line yang mengandung kata "ERROR" atau "INFO", kemudian cut baris dengan '(' , setelah itu hasil cut tersebut di cut lagi dengan ')' sehingga nanti akan memunculkan user. Terakhir di sorting dan di grouping dengan perintah uniq.
+
+
+__Soal 1D__ :<br>  ``` printf 'Keterangan Error : Count\n' > error_message.csv ```<br>
+``` grep "ERROR" "syslog.log" | cut -d' ' -f7- | cut -d'(' -f1 | sort | uniq -c | sort -nr | grep -Eo '[0-9]{1,}' > jumlah.csv``` 
+``` grep "ERROR" "syslog.log"  | cut -d' ' -f7- | cut -d'(' -f1 | sort | uniq -c | sort -nr | tr -d '[0-9]' | sed -e 's/^[[:space:]]*//' > pesan.csv ```<br><br>
+// Pada soal kali ini kita di minta untuk menampilkan informasi yang di dapat pada soal 1.b kemudian kita masukan ke dalam file error_message.csv . <br>
+// ``` grep -Eo '[0-9]{1,}' > jumlah.csv ``` berfungsi untuk mengurutkan hasil output dari soal 1b berdasarkan numerical order urutan terbalik (reverse), piping kembali, untuk mengambil segala jenis digit pada suatu baris dan kemudian dimasukkan kedalam file temporary jumlah.csv.
+
+``` paste pesan.csv jumlah.csv | while IFS="$(printf '\t')" read -r m1 m2 ```<br><br>
+// untuk line ini di gunakan ``` paste pesan.csv jumlah.csv  ``` untuk menampilkan data pada 2 file temporary secara berdampingan .<br>
+kemudian ``` while IFS="$(printf '\t')" read -r m1 m2 ``` di gunakan untuk membaca hasil perintah paste sebelumnya. kemudian dilanjutkan dengan perintah printf yang dipisahkan dengan karakter (koma) , sehingga data bisa dimasukkan ke dalam file error_message.csv. <br><br>
+
+``` do ```<br>
+``` printf "$m1 : $m2\n" ```<br>
+``` done >> error_message.csv ```<br>
+``` cat error_message.csv ``` <br><br>
+// Pada bagian ini di gunakan untuk menampilkan hasil dari file temporary error_message.csv .
+
+
+``` rm -r pesan.csv ```<br>
+``` rm -r jumlah.csv ```<br><br>
+// fungsi ```rm``` untuk menghapus file temporary csv yang di gunakan sebelumnya
+
+
+__Soal 1E__ : 
+``` 
+printf 'Username,INFO,ERROR\n' > user_statistic.csv
+cat syslog.log | cut -d'(' -f2 | cut -d')' -f1 | sort | uniq -c | tr -d '[0-9]' | sed -e 's/^[[:space:]]*//' > user_name.csv
+grep "ERROR" "syslog.log" | cut -d'(' -f2 | cut -d')' -f1 | sort | uniq -c | grep -Eo '[0-9]{1,}' > jumlah_error.csv
+grep "ERROR" "syslog.log" | cut -d'(' -f2 | cut -d')' -f1 | sort | uniq -c | tr -d '[0-9]' | sed -e 's/^[[:space:]]*//' > error_nama.csv
+grep "INFO" "syslog.log" | cut -d'(' -f2 | cut -d')' -f1 | sort | uniq -c | grep -Eo '[0-9]{1,}' > info_jumlah.csv
+grep "INFO" "syslog.log" | cut -d'(' -f2 | cut -d')' -f1 | sort | uniq -c | tr -d '[0-9]' | sed -e 's/^[[:space:]]*//' > info_nama.csv
+
+while read username; do
+	name_user="$username"
+	info_user=0
+	error_user=0
+	paste info_jumlah.csv info_nama.csv | (while read infojumlah infonama; do
+    	if [ "$name_user" == "$infonama" ]
+    	then
+        	info_user=$infojumlah
+        	break
+    	fi
+
+	done
+	paste jumlah_error.csv error_nama.csv | (while read jumlaherror errornama; do
+    	if [ "$name_user" == "$errornama" ]
+    	then
+        	error_user=$jumlaherror
+        	break
+    	fi
+
+	done
+
+printf "$name_user,$info_user,$error_user\n" >> user_statistic.csv))
+done < user_name.csv
+cat user_statistic.csv
+
+rm -r user_name.csv
+rm -r jumlah_error.csv
+rm -r error_nama.csv
+rm -r info_jumlah.csv
+rm -r info_nama.csv
+```
+<br>
+
+// <br> 
+``` cat syslog.log | cut -d'(' -f2 | cut -d')' -f1 | sort | uniq -c | tr -d '[0-9]' | sed -e 's/^[[:space:]]*//' > user_name.csv ``` pada line ini di gunakan untuk memperoleh          username dari setiap user yang ada di ```syslog.log``` .<br>
+``` grep "ERROR" "syslog.log" | cut -d'(' -f2 | cut -d')' -f1 | sort | uniq -c | grep -Eo '[0-9]{1,}' > jumlah_error.csv ``` pada line ini di gunakan untuk mengambil jumlah error kemudian di masukkan ke dalam file temporary jumlah_error.csv .<br>
+``` grep "ERROR" "syslog.log" | cut -d'(' -f2 | cut -d')' -f1 | sort | uniq -c | tr -d '[0-9]' | sed -e 's/^[[:space:]]*//' > error_nama.csv ``` pada line ini di gunakan untuk mengambil username dari variabel yang berisi nama dan jumlah error kemudian di masukan ke dalam file error_nama.csv . <br>
+``` grep "INFO" "syslog.log" | cut -d'(' -f2 | cut -d')' -f1 | sort | uniq -c | grep -Eo '[0-9]{1,}' > info_jumlah.csv ``` pada line ini di gunakan untuk mengambil jumlah info kemudian di masukan ke dalam file info_jumlah.csv . <br> 
+``` grep "INFO" "syslog.log" | cut -d'(' -f2 | cut -d')' -f1 | sort | uniq -c | tr -d '[0-9]' | sed -e 's/^[[:space:]]*//' > info_nama.csv ``` pada line ini di gunakan untuk mengambil username dari varibel yang mengandung nama dan jumlah error kemudian di masukkan kedalam file info_nama.csv . <br>
+Selanjutnya kita mencari username dan jumlah errornya serta jumlah infonya lalu dimasukkan ke dalam user_statistic.csv .<br>
+```
+while read username; do
+	name_user="$username"
+	info_user=0
+	error_user=0
+	paste info_jumlah.csv info_nama.csv | (while read infojumlah infonama; do
+    	if [ "$name_user" == "$infonama" ]
+    	then
+        	info_user=$infojumlah
+        	break
+    	fi
+
+	done
+	paste jumlah_error.csv error_nama.csv | (while read jumlaherror errornama; do
+    	if [ "$name_user" == "$errornama" ]
+    	then
+        	error_user=$jumlaherror
+        	break
+    	fi
+
+	done
+```
+Setelah itu baru kita tampilkan dengan menggunakan line ``` printf "$name_user,$info_user,$error_user\n" >> user_statistic.csv)) ``` <br><br>
+
+Untuk fungsi 
+```
+rm -r user_name.csv
+rm -r jumlah_error.csv
+rm -r error_nama.csv
+rm -r info_jumlah.csv
+rm -r info_nama.csv
+```
+Di gunakan untuk menghapus file temporary yang di gunakan sebelumnya .
+
+
+
+
+  
 
 
 ## Soal 2
