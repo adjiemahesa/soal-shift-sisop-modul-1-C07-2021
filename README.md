@@ -302,6 +302,7 @@ mod=$((x % 2))
 Dimana kita menggunakan tanggal unduh tersebut dan di modulo 2 agar menghasilkan nilai 0 dan bukan 0. Variable ``mod`` akan digunakan dalam looping ``if`` dimana jika hasil dari ``mod = 0`` maka hari akan sama dengan hari genap dan akan mengunduh gambar kucing. Sedangkan jika ``mod != 0`` maka hari akan sama dengan hari ganjil dan gambar yang diunduh akan menjadi gambar kelinci. Untuk nilai hari yang digunakan adalah hari hitungan tahun dimana kita menggunakan *command* ``%j``. Contoh seperti berikut
 
 ![tanggalsoal3c](https://user-images.githubusercontent.com/55140514/113509447-dc0a9b80-957f-11eb-9bec-e671fd64b0c8.jpg)
+
 Lalu, ada juga kondisi dimana jika sudah terdapat folder Kucing/Kelinci maka fungsi tidak akan membuat lagi dikarenakan untuk menghindar terjadinya pengunduhan lebih dari satu kali sehari dengan kondisi ``if [ ! -d "Kucing/Kelinci_$day" ]``. Maka, fungsi terbentuk sebagai berikut
 ```
 if [ ! -d "Kucing_$day" ]&&[ $mod -eq  0 ]
