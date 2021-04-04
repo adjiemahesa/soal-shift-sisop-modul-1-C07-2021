@@ -243,16 +243,16 @@ Untuk mendownload file atau foto-foto dari link ``https://loremflickr.com/320/24
 ```
 wget -O "Koleksi_$x" -o Foto.log https://loremflickr.com/320/240/kitten 
 ```
-Setelah mengunduh foto kita menggunakan sebuah ``awk`` untuk mengambil sebuah bagian untuk nantinya kita *compare* agar tidak terjadi foto duplikat yang terunduh. Untuk bagian yang kita ambil kita gunakan ``md5sum`` dimana yang diambil adalah *identifier* tiap gambar yang terunduh. Lalu, untuk menyimpan bagian-bagian tersebut, perlu digunakan sebuah array yang telah kita declare diluar loopingan mengunduh gambar. Array dan awk seperti berikut
+Setelah mengunduh foto kita menggunakan sebuah ``awk`` untuk mengambil sebuah bagian untuk nantinya kita *compare* agar tidak terjadi foto duplikat yang terunduh. Untuk bagian yang kita ambil kita gunakan string dari nama file gambarnya yang berawal dari tulisan link ``https`` hingga file nama ``.jpg``. Yang string tersbut kita tarik dari ``Foto.log``, maka oleh itu perlu nya digunakan ``-o`` saat ``wget`` agar di ``Foto.log`` pada line dan field tertentu tetap berganti. Setelah kami observasi, line dan field yang kita butuhkan berada pada line 6 field ke-3. Lalu, untuk menyimpan bagian-bagian tersebut, perlu digunakan sebuah array yang telah kita declare diluar loopingan mengunduh gambar. Array dan awk seperti berikut
 ```
-array[$iter]="$(md5sum Koleksi_$x | awk '{print $1}')"
+array[$iter]="$(awk 'NR==6{print $3}' Foto.log)"
 echo "${array[$iter]}"
 ```
-*Identifier* yang diambil akan berbentuk sebagai berikut
+*String* yang diambil akan berbentuk sebagai berikut
 
-![Screenshot 2021-04-04 193148](https://user-images.githubusercontent.com/55140514/113508854-8f719100-957c-11eb-8973-0cea022556b1.jpg)
+![string3a](https://user-images.githubusercontent.com/55140514/113511656-1594d400-958b-11eb-96ee-bf8ba1c2b22d.jpg)
 
-Lalu, agar tidak terjadinya duplikat kita gunakan loopingan dimana akan meng-*check* apakah sudah ada gambar terunduh yang sama. Kita menggunakan loopingan dari ``a=1`` hingga ``a=iter`` dimana ``iter`` adalah counter untuk loopingan mengunduh foto. Jadi fungsi tersebut akan meng-*check* foto yang baru terunduh dengan foto-foto yang sudah terunduh sebelumnya. Untuk *compare* nilai ``md5sum`` tadi kita gunakan ``if/else`` dengan kondisi ``if [[ "${array[$iter]}" ==  "${array[$a]}" ]];``, jika nilainya sama fungsi akan men-*delete* foto yang terunduh dengan *command* ``rm``.
+Lalu, agar tidak terjadinya duplikat kita gunakan loopingan dimana akan meng-*check* apakah sudah ada gambar terunduh yang sama. Kita menggunakan loopingan dari ``a=1`` hingga ``a=iter`` dimana ``iter`` adalah counter untuk loopingan mengunduh foto. Jadi fungsi tersebut akan meng-*check* foto yang baru terunduh dengan foto-foto yang sudah terunduh sebelumnya. Untuk *compare* nilai *string* tadi kita gunakan ``if/else`` dengan kondisi ``if [[ "${array[$iter]}" ==  "${array[$a]}" ]];``, jika nilainya sama fungsi akan men-*delete* foto yang terunduh dengan *command* ``rm``.
 ```
 for ((a=1;a<iter;a=a+1))
 do
@@ -265,6 +265,7 @@ then
 done
 
 ```
+Kendala saat pengerjaan soal ini adalah saat membuat fungsi untuk mengcompare nilai dari foto yang terunduh sama foto yang baru di unduh. Adapun juga kendala dalam menyimpan nilai yang lama dengan nilai yang sekarang.
 **Output** 
 
 ![output3a(2)](https://user-images.githubusercontent.com/55140514/113509214-8ed9fa00-957e-11eb-912e-fd698638f369.jpg)
