@@ -172,10 +172,10 @@ __Soal 2B__
 pada soal ini kita diminta untuk mencari nama customer yang berada pada Alberqueque saat 2017
 ```
 printf("Daftar nama customer di Albuquerque pada tahun 2017 antara lain:\n")}
-{if ($3 ~/17/ && $10 == "Albuquerque")
+{if ($3 ~/-17/ && $10 == "Albuquerque")
  {print $7|"uniq"}}
 ```
-bagian diatas akan melakukan pencarian pada field 3 yang memiliki "/17/" dan pada field 10 yang terdapat "Alberqueque", menggunakan operator ```uniq``` untuk mencegah pengulangan saat melakukan print
+bagian diatas akan melakukan pencarian pada field 3 yang memiliki "-17" dan pada field 10 berisi "Alberqueque", menggunakan ```uniq``` untuk mencegah pengulangan saat melakukan print
 
 __Soal 2C__
 
