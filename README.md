@@ -286,6 +286,9 @@ sedangkan untuk memindahkan file gambar yang telah diunduh serta dengan log-nya 
 ```
 $(mv Koleksi_* Foto.log /home/adjie/$(date +"%d-%m-%Y")) 
 ```
+**Output**
+
+![output3b](https://user-images.githubusercontent.com/55140514/113509238-afa24f80-957e-11eb-8f97-ca9147c8ea18.jpg)
 
 __Soal 3C__
 
