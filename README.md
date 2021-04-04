@@ -157,7 +157,7 @@ pada soal ini kita diminta untuk menampilkan row id yang memiliki profit percent
  costPrice=$18-$21;
  profitPercentage=($21/costPrice)*100;
  
- if(profitPercentage > maxprofit) {
+ if(profitPercentage >= maxprofit) {
  maxprofit=profitPercentage;
  rowidmax = $1;
  }
