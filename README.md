@@ -242,17 +242,18 @@ Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedi
 
 __Soal 3A__
 
-*Untuk soal ini saya saat di execute hasilnya masih salah*
-
 Untuk mendownload file atau foto-foto dari link ``https://loremflickr.com/320/240/kitten`` kita menggunakan *command* ``wget`` seperti berikut
 ```
-wget -o Foto.log https://loremflickr.com/320/240/kitten -O "Koleksi_$x"
+wget -O "Koleksi_$x" -o Foto.log https://loremflickr.com/320/240/kitten 
 ```
-dengan ``-o`` untuk mengoverwrite Foto.log yang kita gunakan nanti *compare* dengan gambar-gambar berikutnya. ``-O`` kita *command* dengan "Koleksi_$x" dimana setiap gambar yang diunduh akan berubah namanya sesuai urutan download yang kita urutkan dengan ``x=$(printf "%02d" $iter)`` yang akan mencari angka urutan terhadap 2-digit. Lalu, kita menggunakan satu bagian *string* didalam ``Foto.log`` yang berisi nama file gambar untuk kita *compare* gambar yang sudah diunduh dengan yang baru diunduh. Hal itu kita buat dengan ``awk`` seperti ini
+Setelah mengunduh foto kita menggunakan sebuah ``awk`` untuk mengambil sebuah bagian untuk nantinya kita *compare* agar tidak terjadi foto duplikat yang terunduh. Untuk bagian yang kita ambil kita gunakan ``md5sum`` dimana yang diambil adalah *identifier* tiap gambar yang terunduh. Lalu, untuk menyimpan bagian-bagian tersebut, perlu digunakan sebuah array yang telah kita declare diluar loopingan mengunduh gambar. Array dan awk seperti berikut
 ```
-temp=$(awk 'NR==6{print $3}' Foto.log)
+array[$iter]="$(md5sum Koleksi_$x | awk '{print $1}')"
+echo "${array[$iter]}"
 ```
-Lalu, kita *compare* dengan looping dimana kita menggunakan ``wget`` lagi untuk mengunduh gambar serta membuat ``awk`` lagi sehingga dapat line untuk di *compare*.
+*Identifier* yang diambil akan berbentuk sebagai berikut
+![Screenshot 2021-04-04 193148](https://user-images.githubusercontent.com/55140514/113508854-8f719100-957c-11eb-8973-0cea022556b1.jpg)
+
 ```
 a=num
 for ((a=iter-1;a>=1;a=a-1))
@@ -270,7 +271,7 @@ done
 ```
 Terakhir, didalam loopingan mengunduh foto akan ada loopingan dimana meng-*check* apakah line pada variable ``temp`` dengan ``temp2`` sama atau tidak. Jika sama maka akan menghapus file duplikat yang baru saja diunduh dengan *command* ``rm``.
 
-# Output 
+**Output** 
 ![output3a](https://user-images.githubusercontent.com/55140514/113508574-efffce80-957a-11eb-8a68-f343ee74e790.jpg)
 
 
