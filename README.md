@@ -265,6 +265,10 @@ then
 done
 
 ```
+Jika ada file yang sama, kita bisa lihat di *terminal* dengan kalimat "Delete Duplikat". File tersebut langsung akan kedelete dan lanjut ke gambar yang lainnnya.
+
+![Screenshot 2021-04-04 212344](https://user-images.githubusercontent.com/55140514/113511843-15490880-958c-11eb-9e21-43219fdfb6f1.jpg)
+
 Kendala saat pengerjaan soal ini adalah saat membuat fungsi untuk mengcompare nilai dari foto yang terunduh sama foto yang baru di unduh. Adapun juga kendala dalam menyimpan nilai yang lama dengan nilai yang sekarang.
 **Output** 
 
