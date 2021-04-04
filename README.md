@@ -354,6 +354,7 @@ password=$(date +"%d%m%Y")
 **Output**
 
 ![output3d](https://user-images.githubusercontent.com/55140514/113509856-f2b1f200-9581-11eb-9799-5bbca6179250.jpg)
+
 Untuk password akan teraktivasi saat kita mencoba untuk mengakses file gambar yang berada didalam folder yang sudah di ``zip``
 
 ![output3d(2)](https://user-images.githubusercontent.com/55140514/113509859-f5ace280-9581-11eb-9049-29aa56154511.jpg)
