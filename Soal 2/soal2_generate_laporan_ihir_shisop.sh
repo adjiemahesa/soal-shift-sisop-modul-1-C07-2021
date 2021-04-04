@@ -4,19 +4,16 @@ BEGIN { FS=OFS="\t"; maxprofit=0; rowidmax=1}
  costPrice=$18-$21;
  profitPercentage=($21/costPrice)*100;
  
- if(profitPercentage > maxprofit) {
+ if(profitPercentage >= maxprofit) {
  maxprofit=profitPercentage;
- }
- 
- if(profitPercentage == maxprofit) {
-  rowidmax = $1;
+ rowidmax = $1;
  }
  }
 END {printf ("Transaksi terakhir dengan profit percentage terbesar yaitu %d dengan persentase %.3f %%.\n\n", rowidmax, maxprofit)}' Laporan-TokoShiSop.tsv >> hasil.txt
 
 awk '
 BEGIN{FS=OFS="\t"; printf("Daftar nama customer di Albuquerque pada tahun 2017 antara lain:\n")}
-{if ($3 ~/17/ && $10 == "Albuquerque")
+{if ($3 ~/-17/ && $10 == "Albuquerque")
  {print $7|"uniq"}}' Laporan-TokoShiSop.tsv >>hasil.txt
 
 #REVISI SOAL 2B menambah operator uniq agar tidak melakukan perulangan nama pada output
