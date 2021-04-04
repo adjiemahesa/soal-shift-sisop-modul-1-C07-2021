@@ -269,6 +269,7 @@ done
 
 ```
 **Output** 
+
 ![output3a](https://user-images.githubusercontent.com/55140514/113508574-efffce80-957a-11eb-8a68-f343ee74e790.jpg)
 
 
@@ -276,10 +277,10 @@ __Soal 3B__
 
 Soal ini meminta kita untuk menjalankan script **setiap tanggal 1 tujuh hari sekali** dan **tanggal 2 empat hari sekali**. Untuk melakukan itu kita pakai crontab sebagai berikut
 ```
-0 20 1-31/7 * * bash /home/adjie/soal3a.sh
-0 20 1-31/7 * * bash /home/adjie/soal3b.sh
-0 20 2-31/4 * * bash /home/adjie/soal3a.sh
-0 20 2-31/4 * * bash /home/adjie/soal3b.sh
+0 20 1-31/7 * * bash soal3a.sh
+0 20 1-31/7 * * bash soal3b.sh
+0 20 2-31/4 * * bash soal3a.sh
+0 20 2-31/4 * * bash soal3b.sh
 ```
 Crontab diarah kan ke file ``soal3a.sh`` agar dapat menarik gambar-gambar yang diperlukan. Lalu, kita buat script untuk menjalankan perintah membuat folder baru menggunakan format nama tanggal unduhnya seperti "DD-MM-YYYY" dengan menggunakan
 ```
@@ -289,6 +290,9 @@ sedangkan untuk memindahkan file gambar yang telah diunduh serta dengan log-nya 
 ```
 $(mv Koleksi_* Foto.log /home/adjie/$(date +"%d-%m-%Y")) 
 ```
+**Output**
+
+![output3b](https://user-images.githubusercontent.com/55140514/113509153-3145ad80-957e-11eb-9093-08fc53debb2b.jpg)
 
 __Soal 3C__
 
