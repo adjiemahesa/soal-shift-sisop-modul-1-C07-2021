@@ -270,6 +270,10 @@ done
 ```
 Terakhir, didalam loopingan mengunduh foto akan ada loopingan dimana meng-*check* apakah line pada variable ``temp`` dengan ``temp2`` sama atau tidak. Jika sama maka akan menghapus file duplikat yang baru saja diunduh dengan *command* ``rm``.
 
+# Output 
+![output3a](https://user-images.githubusercontent.com/55140514/113508574-efffce80-957a-11eb-8a68-f343ee74e790.jpg)
+
+
 __Soal 3B__
 
 Soal ini meminta kita untuk menjalankan script **setiap tanggal 1 tujuh hari sekali** dan **tanggal 2 empat hari sekali**. Untuk melakukan itu kita pakai crontab sebagai berikut
