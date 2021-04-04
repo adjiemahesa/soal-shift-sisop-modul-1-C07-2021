@@ -340,6 +340,7 @@ Pada perintah tersebut ``-rm`` digunakan agar memindahkan file-file tersebut dan
 ```
 password=$(date +"%d%m%Y")
 ```
+Untuk password akan teraktivasi saat kita mencoba untuk mengakses file gambar yang berada didalam folder yang sudah di ``zip``
 **Output**
 
 ![output3d](https://user-images.githubusercontent.com/55140514/113509856-f2b1f200-9581-11eb-9799-5bbca6179250.jpg)
