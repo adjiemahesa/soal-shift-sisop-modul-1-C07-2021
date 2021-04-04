@@ -286,6 +286,7 @@ sedangkan untuk memindahkan file gambar yang telah diunduh serta dengan log-nya 
 ```
 $(mv Koleksi_* Foto.log /home/adjie/$(date +"%d-%m-%Y")) 
 ```
+Kendala yang saya alami dalam pengerjaan soal ini adalah dalam mencoba crontab yang tertera, karena saat ingin mencoba virtualbox saya date and time dirubah tetapi automatis balik ke waktu saat ini.
 **Output**
 
 ![output3b](https://user-images.githubusercontent.com/55140514/113509238-afa24f80-957e-11eb-8f97-ca9147c8ea18.jpg)
@@ -326,6 +327,7 @@ Didalam loopingan ini terdapat juga untuk tiap kondisi loopingan ``for`` untuk m
 $(mkdir Kucing_$(date +"%d-%m-%Y"))
 $(mkdir Kelinci_$(date +"%d-%m-%Y"))
 ```
+Untuk Soal ini kendala yang dialami adalah pada pencobaan crontab nya karena jika saat ini nilai ``mod`` adalah 0 maka saya ingin mencoba untuk membuktikan jika nilai ``mod`` nya benar tetapi tidak bisa karena harus saya gunakan penggantian date and time pada virtualbox nya tetapi saat saya rubah hanya bisa beberapa waktu saja sebelum virtualbox merubah secara automatis kembali ke waktu saat ini.
 **Output**
 
 ![output3c](https://user-images.githubusercontent.com/55140514/113509775-96e76900-9581-11eb-8330-6927f4904fc7.jpg)
@@ -340,23 +342,25 @@ Pada perintah tersebut ``-rm`` digunakan agar memindahkan file-file tersebut dan
 ```
 password=$(date +"%d%m%Y")
 ```
-Untuk password akan teraktivasi saat kita mencoba untuk mengakses file gambar yang berada didalam folder yang sudah di ``zip``
 **Output**
 
 ![output3d](https://user-images.githubusercontent.com/55140514/113509856-f2b1f200-9581-11eb-9799-5bbca6179250.jpg)
-![output3d(2)](https://user-images.githubusercontent.com/55140514/113509859-f5ace280-9581-11eb-9049-29aa56154511.jpg)
+Untuk password akan teraktivasi saat kita mencoba untuk mengakses file gambar yang berada didalam folder yang sudah di ``zip``
 
+![output3d(2)](https://user-images.githubusercontent.com/55140514/113509859-f5ace280-9581-11eb-9049-29aa56154511.jpg)
 
 __Soal 3e__
 
 Soal ini kita diminta untuk membuat sebuah script dimana pada hari tertentu dan jam tertentu folder dan gambar-gambar tersebut akan ter-zip dan meng-unzip file-file tersebut pada waktu lainnya. Untuk itu kami buat kan crontab agar bisa menggunakan waktu yang spesifik.
 ```
-* 7-17 * * 1+5 bash /home/adjie/soal3d.sh
-* 0-6, 18-23 * * 1-5 unzip -P $(date +%d%m%Y) -o ~/Koleksi.zip && rm ~/Koleksi.zip
-* * * * 6-7 unzip -P $(date +%d%m%Y) -o ~/Koleksi.zip && rm ~/Koleksi.zip
+* 7 * * 1-5 bash soal3d.sh
+* 18 * * 1-5 unzip -P $(date '+%d%m%Y') Koleksi.zip && rm Koleksi.zip
+* * * * 6-7 unzip -P $(date '+%d%m%Y') Koleksi.zip && rm Koleksi.zip
 ```
 Pada crontab tersebut bisa dilihat bahwa kita menggunakan jam 7 hingga 17 pada hari senin hingga jumat (Hari Kuliah) untuk meng-zip kan file dan sisanya untuk meng-unzip kan file. Untuk meng-zipkan file crontab diarahkan ke ``soal3d.sh`` karena sudah mengandung perintah untuk meng-zip kan file. Untuk meng-unzip kan file bisa digunakan sebagai berikut
 ```
-unzip -P $(date +%d%m%Y) -o ~/Koleksi.zip && rm ~/Koleksi.zip
+unzip -P $(date '+%d%m%Y') Koleksi.zip && rm Koleksi.zip
 ```
 Dimana *command* ``-P`` digunakan untuk memasukan password agar bisa membuka file zip dan ``-o`` serta ``rm`` untuk mengeluarkan serta menghapus file ``.zip``
+
+Kendala saat pengerjaan soal ini adalah crontab dijalan karena kan saat penulisan awal saya masih tidak benar sehingga tidak jalan.
