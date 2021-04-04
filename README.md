@@ -266,8 +266,8 @@ done
 
 ```
 **Output** 
-![output3a](https://user-images.githubusercontent.com/55140514/113508574-efffce80-957a-11eb-8a68-f343ee74e790.jpg)
 
+![output3a(2)](https://user-images.githubusercontent.com/55140514/113509214-8ed9fa00-957e-11eb-912e-fd698638f369.jpg)
 
 __Soal 3B__
 
