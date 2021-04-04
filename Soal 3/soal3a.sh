@@ -13,7 +13,7 @@ x=$(printf "%02d" $iter)
 ## download file + overwrite log
 wget -O "Koleksi_$x" -o Foto.log https://loremflickr.com/320/240/kitten 
 
-array[$iter]="$(md5sum Koleksi_$x | awk '{print $1}')"
+array[$iter]="$(awk 'NR==6{print $3}' Foto.log)"
 echo "${array[$iter]}"
 
 for ((a=1;a<iter;a=a+1))
