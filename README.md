@@ -287,6 +287,7 @@ sedangkan untuk memindahkan file gambar yang telah diunduh serta dengan log-nya 
 $(mv Koleksi_* Foto.log /home/adjie/$(date +"%d-%m-%Y")) 
 ```
 Kendala yang saya alami dalam pengerjaan soal ini adalah dalam mencoba crontab yang tertera, karena saat ingin mencoba virtualbox saya date and time dirubah tetapi automatis balik ke waktu saat ini.
+
 **Output**
 
 ![output3b](https://user-images.githubusercontent.com/55140514/113509238-afa24f80-957e-11eb-8f97-ca9147c8ea18.jpg)
@@ -328,6 +329,7 @@ $(mkdir Kucing_$(date +"%d-%m-%Y"))
 $(mkdir Kelinci_$(date +"%d-%m-%Y"))
 ```
 Untuk Soal ini kendala yang dialami adalah pada pencobaan crontab nya karena jika saat ini nilai ``mod`` adalah 0 maka saya ingin mencoba untuk membuktikan jika nilai ``mod`` nya benar tetapi tidak bisa karena harus saya gunakan penggantian date and time pada virtualbox nya tetapi saat saya rubah hanya bisa beberapa waktu saja sebelum virtualbox merubah secara automatis kembali ke waktu saat ini.
+
 **Output**
 
 ![output3c](https://user-images.githubusercontent.com/55140514/113509775-96e76900-9581-11eb-8330-6927f4904fc7.jpg)
