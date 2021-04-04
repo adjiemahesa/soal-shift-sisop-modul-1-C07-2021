@@ -252,25 +252,22 @@ array[$iter]="$(md5sum Koleksi_$x | awk '{print $1}')"
 echo "${array[$iter]}"
 ```
 *Identifier* yang diambil akan berbentuk sebagai berikut
+
 ![Screenshot 2021-04-04 193148](https://user-images.githubusercontent.com/55140514/113508854-8f719100-957c-11eb-8973-0cea022556b1.jpg)
 
+Lalu, agar tidak terjadinya duplikat kita gunakan loopingan dimana akan meng-*check* apakah sudah ada gambar terunduh yang sama. Kita menggunakan loopingan dari ``a=1`` hingga ``a=iter`` dimana ``iter`` adalah counter untuk loopingan mengunduh foto. Jadi fungsi tersebut akan meng-*check* foto yang baru terunduh dengan foto-foto yang sudah terunduh sebelumnya. Untuk *compare* nilai ``md5sum`` tadi kita gunakan ``if/else`` dengan kondisi ``if [[ "${array[$iter]}" ==  "${array[$a]}" ]];``, jika nilainya sama fungsi akan men-*delete* foto yang terunduh dengan *command* ``rm``.
 ```
-a=num
-for ((a=iter-1;a>=1;a=a-1))
+for ((a=1;a<iter;a=a+1))
 do
-        wget -o Foto.log https://loremflickr.com/320/240/kitten -O "Koleksi_$x"
-        temp2=$(awk 'NR==6{print $3}' Foto.log)
-
-        if [[ "$temp" == "$temp2" ]]
-        then
-                rm -f "Koleksi_$x"
-                count=$((count-1))
-                iter=$((iter-1))
+if [[ "${array[$iter]}" ==  "${array[$a]}" ]];
+then 
+        echo "Delete Duplikat"
+        rm -f "Koleksi_$x"
+        iter=$((iter-1))
         fi
 done
-```
-Terakhir, didalam loopingan mengunduh foto akan ada loopingan dimana meng-*check* apakah line pada variable ``temp`` dengan ``temp2`` sama atau tidak. Jika sama maka akan menghapus file duplikat yang baru saja diunduh dengan *command* ``rm``.
 
+```
 **Output** 
 ![output3a](https://user-images.githubusercontent.com/55140514/113508574-efffce80-957a-11eb-8a68-f343ee74e790.jpg)
 
