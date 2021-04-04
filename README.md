@@ -20,26 +20,43 @@ __Soal 1C__ :<br> ``` cat syslog.log | grep "ERROR" | cut -d'(' -f2 | cut -d')' 
    cat syslog.log mengambil data syslog.log , grep "ERROR" mengambil line yang mengandung kata "ERROR" atau "INFO", kemudian cut baris dengan '(' , setelah itu hasil cut tersebut di cut lagi dengan ')' sehingga nanti akan memunculkan user. Terakhir di sorting dan di grouping dengan perintah uniq.
 
 
-__Soal 1D__ :<br>  ``` printf 'Keterangan Error : Count\n' > error_message.csv ```<br>
+__Soal 1D__ :
+```
+printf 'Keterangan Error : Count\n' > error_message.csv
+grep "ERROR" "syslog.log" | cut -d' ' -f7- | cut -d'(' -f1 | sort | uniq -c | sort -nr | grep -Eo '[0-9]{1,}' > jumlah.csv
+grep "ERROR" "syslog.log"  | cut -d' ' -f7- | cut -d'(' -f1 | sort | uniq -c | sort -nr | tr -d '[0-9]' | sed -e 's/^[[:space:]]*//' > pesan.csv
+
+paste pesan.csv jumlah.csv | while IFS="$(printf '\t')" read -r m1 m2
+
+do
+printf "$m1 : $m2\n"
+done >> error_message.csv
+cat error_message.csv
+
+rm -r pesan.csv
+rm -r jumlah.csv
+```
+//
+<br> ``` printf 'Keterangan Error : Count\n' > error_message.csv ```<br>
 ``` grep "ERROR" "syslog.log" | cut -d' ' -f7- | cut -d'(' -f1 | sort | uniq -c | sort -nr | grep -Eo '[0-9]{1,}' > jumlah.csv``` 
 ``` grep "ERROR" "syslog.log"  | cut -d' ' -f7- | cut -d'(' -f1 | sort | uniq -c | sort -nr | tr -d '[0-9]' | sed -e 's/^[[:space:]]*//' > pesan.csv ```<br><br>
-// Pada soal kali ini kita di minta untuk menampilkan informasi yang di dapat pada soal 1.b kemudian kita masukan ke dalam file error_message.csv . <br>
-// ``` grep -Eo '[0-9]{1,}' > jumlah.csv ``` berfungsi untuk mengurutkan hasil output dari soal 1b berdasarkan numerical order urutan terbalik (reverse), piping kembali, untuk mengambil segala jenis digit pada suatu baris dan kemudian dimasukkan kedalam file temporary jumlah.csv.
+Pada soal kali ini kita di minta untuk menampilkan informasi yang di dapat pada soal 1.b kemudian kita masukan ke dalam file error_message.csv . <br>
+``` grep -Eo '[0-9]{1,}' > jumlah.csv ``` berfungsi untuk mengurutkan hasil output dari soal 1b berdasarkan numerical order urutan terbalik (reverse), piping kembali, untuk mengambil segala jenis digit pada suatu baris dan kemudian dimasukkan kedalam file temporary jumlah.csv.
 
 ``` paste pesan.csv jumlah.csv | while IFS="$(printf '\t')" read -r m1 m2 ```<br><br>
-// untuk line ini di gunakan ``` paste pesan.csv jumlah.csv  ``` untuk menampilkan data pada 2 file temporary secara berdampingan .<br>
+untuk line ini di gunakan ``` paste pesan.csv jumlah.csv  ``` untuk menampilkan data pada 2 file temporary secara berdampingan .<br>
 kemudian ``` while IFS="$(printf '\t')" read -r m1 m2 ``` di gunakan untuk membaca hasil perintah paste sebelumnya. kemudian dilanjutkan dengan perintah printf yang dipisahkan dengan karakter (koma) , sehingga data bisa dimasukkan ke dalam file error_message.csv. <br><br>
 
 ``` do ```<br>
 ``` printf "$m1 : $m2\n" ```<br>
 ``` done >> error_message.csv ```<br>
 ``` cat error_message.csv ``` <br><br>
-// Pada bagian ini di gunakan untuk menampilkan hasil dari file temporary error_message.csv .
+Pada bagian ini di gunakan untuk menampilkan hasil dari file temporary error_message.csv .
 
 
 ``` rm -r pesan.csv ```<br>
 ``` rm -r jumlah.csv ```<br><br>
-// fungsi ```rm``` untuk menghapus file temporary csv yang di gunakan sebelumnya
+fungsi ```rm``` untuk menghapus file temporary csv yang di gunakan sebelumnya
 
 
 __Soal 1E__ : 
